@@ -9,6 +9,8 @@ CARBON_CLASSES = {
     forms.Textarea: "cds--text-area",
 }
 INPUT_CLASS = "cds--text-input"
+# Django 6.1's default blank choice is the English "- Select an option -".
+BLANK_CHOICE_LABEL = "- Pasirinkite -"
 INVALID_CLASSES = {
     "cds--text-input": "cds--text-input--invalid",
     "cds--text-area": "cds--text-area--invalid",
@@ -27,6 +29,14 @@ class CarbonFormMixin(forms.BaseForm):
                 INPUT_CLASS,
             )
             widget.attrs["class"] = css
+            if isinstance(field, forms.ModelChoiceField):
+                if field.empty_label is not None:
+                    field.empty_label = BLANK_CHOICE_LABEL
+            elif isinstance(field, forms.ChoiceField):
+                choices = list(field.choices)
+                if choices and choices[0][0] == "":
+                    choices[0] = ("", BLANK_CHOICE_LABEL)
+                    field.choices = choices
 
     def full_clean(self):
         super().full_clean()
