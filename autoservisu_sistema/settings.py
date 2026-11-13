@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     # Project apps
-    "views.main.apps.MainConfig",
-    "views.vehicles.apps.VehiclesConfig",
-    "views.services.apps.ServicesConfig",
-    "views.orders.apps.OrdersConfig",
-    "views.inventory.apps.InventoryConfig",
-    "views.billing.apps.BillingConfig",
-    "views.accounts.apps.AccountsConfig",
+    "apps.main.apps.MainConfig",
+    "apps.vehicles.apps.VehiclesConfig",
+    "apps.services.apps.ServicesConfig",
+    "apps.orders.apps.OrdersConfig",
+    "apps.inventory.apps.InventoryConfig",
+    "apps.billing.apps.BillingConfig",
+    "apps.accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -71,7 +71,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "views.main.context_processors.user_role",
+                "apps.main.context_processors.user_role",
             ],
         },
     },
